@@ -1,0 +1,11 @@
+# Never commit these.
+# Secrets: logins, admin token, card details (copy .env.example to .env instead)
+.env
+# Saved login sessions
+.auth/
+
+# Created automatically
+node_modules/
+test-results/
+playwright-report/
+blob-report/
