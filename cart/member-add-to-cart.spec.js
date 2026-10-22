@@ -16,14 +16,15 @@ const path = require('path');
 const { ProductPage } = require('../support/pages/productPage');
 const { CartDrawer } = require('../support/pages/cartDrawer');
 const { CartPage } = require('../support/pages/cartPage');
+const { TEST_FILES } = require('../support/testData');
 const { customerApi, cartItemCount, emptyCart } = require('../support/api');
 const { loginAsMember } = require('../support/auth');
 
 const PRODUCT = { name: 'Art Paper Stickers', path: '/stickers/paper/art' };
 const NEW_QUANTITY = '200';
 const ARTWORK = {
-  file: path.join(__dirname, '..', 'support', 'fixtures', 'artwork', 'sticker-artwork.png'),
-  fileName: 'sticker-artwork.png',
+  file: TEST_FILES.images[0],
+  fileName: path.basename(TEST_FILES.images[0]), // Test-image-1.png
   // Kept short: the cart page cuts long instructions off with "...".
   instruction: 'FOR TESTING PURPOSES ONLY',
 };

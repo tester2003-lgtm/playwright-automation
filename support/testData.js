@@ -1,5 +1,18 @@
 // Test data shared by several specs. Secrets (card details, logins) come from .env only.
 
+const path = require('path');
+
+// The QA test files every upload uses (artwork, message attachments). Copied from the QA folder
+// OneDrive\Documents\WORK\artwork_test into support/fixtures/test-files; copy again after
+// changing them there. The images are 500x500 PNGs.
+const TEST_FILES_DIR = path.join(__dirname, 'fixtures', 'test-files');
+const TEST_FILES = {
+  images: [1, 2, 3, 4, 5, 6, 7].map((i) => path.join(TEST_FILES_DIR, `Test-image-${i}.png`)),
+  imageWidth: 500,
+  pdf: path.join(TEST_FILES_DIR, 'pdf_test.pdf'),
+  illustrator: path.join(TEST_FILES_DIR, 'Test.ai'),
+};
+
 // Checkout email for guest orders. trainee84.glophics@gmail.com itself signs in with Google,
 // which blocks guest checkout; Gmail ignores the "+…" part, so mail still reaches the trainee84
 // inbox while the site sees a separate guest email. This one was verified once (by hand, during
@@ -26,4 +39,4 @@ function testCard() {
   return { number, expiry: expiry.replace(/\D/g, ''), cvc };
 }
 
-module.exports = { CHECKOUT_EMAIL, SHIPPING_ADDRESS, TEST_ORDER_NOTE, testCard };
+module.exports = { CHECKOUT_EMAIL, SHIPPING_ADDRESS, TEST_ORDER_NOTE, testCard, TEST_FILES };

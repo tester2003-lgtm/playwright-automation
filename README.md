@@ -33,15 +33,20 @@ checkout/                 tests: placing orders (⚠ each run places a real TEST
   guest-credit-card.spec.js   Airwallex sandbox card from .env (CARD_*)
   guest-paypal.spec.js        hand-off to PayPal (stand-in page), leave without paying (unpaid order)
   member-credit-card.spec.js  saved address, card, then finds the order in My Orders
+orders/                   tests: My Orders (⚠ sends real messages, each emails the staff inbox)
+  member-messages.spec.js     messages on the newest order: refused cases, then 6 sent messages
 support/                  helpers (not tests)
   pages/                    page helpers: loginModal.js, forgotPasswordModal.js,
                             registerModal.js, accountMenu.js, topMenu.js,
                             productPage.js, cartDrawer.js, cartPage.js, artworkUploadModal.js,
-                            checkoutPage.js (checkout, PayPal, order complete/failed pages)
+                            checkoutPage.js (checkout, PayPal, order complete/failed pages),
+                            myOrdersPage.js, orderMessagesPanel.js
   setup/                    member.setup.js, admin.setup.js (log in once per run)
-  fixtures/                 test files to upload (artwork/sticker-artwork.png)
+  fixtures/test-files/      the QA test files every upload uses (Test-image-1..7.png, Test.ai,
+                            pdf_test.pdf), copied from OneDrive\Documents\WORK\artwork_test
   api.js                    API shortcuts for test setup (e.g. empty the member's cart)
-  testData.js               shared test data: guest checkout email, address, test-order note
+  testData.js               shared test data: guest checkout email, address, test-order note,
+                            TEST_FILES (paths to the QA test files)
   socialLogin.js            Google/Facebook login helpers (stand-in for the provider's pages)
   auth.js                   login shortcut used by other tests
   config.js                 site and API URLs from .env

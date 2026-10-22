@@ -80,4 +80,12 @@ async function emptyCart(api) {
   throw new Error('emptyCart: the cart still has items after 10 passes');
 }
 
-module.exports = { customerApi, memberApiLogin, memberToken, cartItemCount, emptyCart };
+// The member's newest order: { id, number } (id opens /mypage/orders/<id>).
+async function newestOrder(api) {
+  const body = await json(await api.get('mypage/orders', { params: { page: 1 } }), 'mypage/orders');
+  const order = body.data.data[0];
+  if (!order) throw new Error('The member account has no orders yet. Run checkout/member-credit-card.spec.js once.');
+  return { id: order.id, number: String(order.invoice_no) };
+}
+
+module.exports = { customerApi, memberApiLogin, memberToken, cartItemCount, emptyCart, newestOrder };
